@@ -1,0 +1,30 @@
+{
+  "name": "dvchallenge_backend",
+  "version": "1.0.0",
+  "description": "BCGDV Backend Challenge ANAS LAFROUJI",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lafroujianas/dvchallenge_backend.git"
+  },
+  "author": "Anas Lafrouji",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lafroujianas/dvchallenge_backend/issues"
+  },
+  "homepage": "https://github.com/lafroujianas/dvchallenge_backend#readme",
+  "dependencies": {
+    "chai": "^4.3.7",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "supertest": "^6.3.1"
+  }
+}
