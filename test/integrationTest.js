@@ -166,6 +166,16 @@ describe("Integration testing",function()
 
         })
 
+        it('Should respond with json', async () => {
+            const res = await request(app)
+            .post('/checkout')
+            .send('')
+            .set('Content-Type', 'application/json')  
+            .set('Accept', 'application/json')
+            expect('Content-Type', /json/)
+
+        })
+
         
 
        

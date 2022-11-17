@@ -13,12 +13,9 @@ module.exports = function(app) {
 
     app.post('/checkout', function (req, res) {
 
-        console.log("Body",req.body)
         
         data = (req.body)
      
-        console.log("Data received",data)
-
         api = new API()
 
         restructured_data= api.restructure_data(data)
@@ -27,7 +24,6 @@ module.exports = function(app) {
 
         sum = api.sum(data_grouped_by_number)
 
-        console.log("Sum",sum)
 
         res.setHeader('Content-Type', 'application/json');
 
