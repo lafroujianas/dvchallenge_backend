@@ -4,106 +4,99 @@ This file contains the integration tests
 
 */
 
-var assert =require("assert");
+var assert = require("assert");
 const { expect } = require("chai");
 var should = require('chai').should()
 const request = require('supertest');
 
-var API=require("../lib/api/api")
+var API = require("../lib/api/api")
 const app = require('../app')
 
 
 
-describe("Integration testing",function()
-{
+describe("Integration testing", function () {
 
-    describe("Method sum",function()
-    {
-       it("Should return 360",function()
-       {
+    describe("Method sum", function () {
+        it("Should return 360", function () {
 
-        var data = ["001","002","001","004","003"]
+            var data = ["001", "002", "001", "004", "003"]
 
-        var api = new API()
+            var api = new API()
 
-        restructured_data= api.restructure_data(data)
+            restructured_data = api.restructure_data(data)
 
-        data_grouped_by_number=api.groupByNumber(restructured_data)
+            data_grouped_by_number = api.group_by_number(restructured_data)
 
-        sum = api.sum(data_grouped_by_number)
+            sum = api.sum(data_grouped_by_number)
 
-        expect(sum).to.be.equal(360)
- 
-
-       })
-
-       it("Should return 200",function()
-       {
-
-        var data = ["001","001","001"]
-
-        var api = new API()
-
-        restructured_data= api.restructure_data(data)
-
-        data_grouped_by_number=api.groupByNumber(restructured_data)
-
-        sum = api.sum(data_grouped_by_number)
-
-        expect(sum).to.be.equal(200)
- 
-
-       })
+            expect(sum).to.be.equal(360)
 
 
-       it("Should return 400",function()
-       {
+        })
 
-        var data = ["001","001","001","002","002","002"]
+        it("Should return 200", function () {
 
-        var api = new API()
+            var data = ["001", "001", "001"]
 
-        restructured_data= api.restructure_data(data)
+            var api = new API()
 
-        data_grouped_by_number=api.groupByNumber(restructured_data)
+            restructured_data = api.restructure_data(data)
 
-        sum = api.sum(data_grouped_by_number)
+            data_grouped_by_number = api.group_by_number(restructured_data)
 
-        expect(sum).to.be.equal(400)
- 
+            sum = api.sum(data_grouped_by_number)
 
-       })
+            expect(sum).to.be.equal(200)
 
 
-       it("Should return 260",function()
-       {
+        })
 
-        var data = ["001","002","003","004"]
 
-        var api = new API()
+        it("Should return 400", function () {
 
-        restructured_data= api.restructure_data(data)
+            var data = ["001", "001", "001", "002", "002", "002"]
 
-        data_grouped_by_number=api.groupByNumber(restructured_data)
+            var api = new API()
 
-        sum = api.sum(data_grouped_by_number)
+            restructured_data = api.restructure_data(data)
 
-        expect(sum).to.be.equal(260)
- 
+            data_grouped_by_number = api.group_by_number(restructured_data)
 
-       })
+            sum = api.sum(data_grouped_by_number)
+
+            expect(sum).to.be.equal(400)
+
+
+        })
+
+
+        it("Should return 260", function () {
+
+            var data = ["001", "002", "003", "004"]
+
+            var api = new API()
+
+            restructured_data = api.restructure_data(data)
+
+            data_grouped_by_number = api.group_by_number(restructured_data)
+
+            sum = api.sum(data_grouped_by_number)
+
+            expect(sum).to.be.equal(260)
+
+
+        })
 
     })
 
 
 
-    describe("API testing",function()
-    {
+    describe("API testing", function () {
 
         it('It works', async () => {
             const res = await request(app)
-              .post('/checkout');
-        
+                .post('/checkout');
+
             expect(res.statusCode).to.equal(200)
 
         })
@@ -111,11 +104,11 @@ describe("Integration testing",function()
 
         it('Should have a price of 360', async () => {
             const res = await request(app)
-            .post('/checkout')
-            .send('["001","002","001","004","003"]')
-            .set('Content-Type', 'application/json')  
-            .set('Accept', 'application/json');
-        
+                .post('/checkout')
+                .send('["001","002","001","004","003"]')
+                .set('Content-Type', 'application/json')
+                .set('Accept', 'application/json');
+
             expect(res.body.price).to.equal(360)
 
         })
@@ -123,11 +116,11 @@ describe("Integration testing",function()
 
         it('Should have a price of 200', async () => {
             const res = await request(app)
-            .post('/checkout')
-            .send('["001","001","001"]')
-            .set('Content-Type', 'application/json')  
-            .set('Accept', 'application/json');
-        
+                .post('/checkout')
+                .send('["001","001","001"]')
+                .set('Content-Type', 'application/json')
+                .set('Accept', 'application/json');
+
             expect(res.body.price).to.equal(200)
 
         })
@@ -135,11 +128,11 @@ describe("Integration testing",function()
 
         it('Should have a price of 400', async () => {
             const res = await request(app)
-            .post('/checkout')
-            .send('["001","001","001","002","002","002"]')
-            .set('Content-Type', 'application/json')  
-            .set('Accept', 'application/json');
-        
+                .post('/checkout')
+                .send('["001","001","001","002","002","002"]')
+                .set('Content-Type', 'application/json')
+                .set('Accept', 'application/json');
+
             expect(res.body.price).to.equal(400)
 
         })
@@ -147,10 +140,10 @@ describe("Integration testing",function()
 
         it('Should have a price of 260', async () => {
             const res = await request(app)
-            .post('/checkout')
-            .send('["001","002","003","004"]')
-            .set('Content-Type', 'application/json')  
-            .set('Accept', 'application/json');
+                .post('/checkout')
+                .send('["001","002","003","004"]')
+                .set('Content-Type', 'application/json')
+                .set('Accept', 'application/json');
             expect(res.body.price).to.equal(260)
 
         })
@@ -158,27 +151,27 @@ describe("Integration testing",function()
 
         it('Should have a price of 0', async () => {
             const res = await request(app)
-            .post('/checkout')
-            .send('')
-            .set('Content-Type', 'application/json')  
-            .set('Accept', 'application/json');
+                .post('/checkout')
+                .send('')
+                .set('Content-Type', 'application/json')
+                .set('Accept', 'application/json');
             expect(res.body.price).to.equal(0)
 
         })
 
         it('Should respond with json', async () => {
             const res = await request(app)
-            .post('/checkout')
-            .send('')
-            .set('Content-Type', 'application/json')  
-            .set('Accept', 'application/json')
+                .post('/checkout')
+                .send('')
+                .set('Content-Type', 'application/json')
+                .set('Accept', 'application/json')
             expect('Content-Type', /json/)
 
         })
 
-        
 
-       
+
+
 
     })
 

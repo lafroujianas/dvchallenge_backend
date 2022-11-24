@@ -7,7 +7,7 @@ Purpose of this file :
 */
 
 var express = require('express');
-var bodyParser = require('body-parser'); 
+var bodyParser = require('body-parser');
 
 
 var app = express();
@@ -21,9 +21,9 @@ var server = app.listen(8080, function () {
     var host = server.address().address
     var port = server.address().port
     console.log("Listening at http://%s:%s", host, port)
- })
- 
- 
- 
- 
- module.exports=app
+})
+
+
+
+
+module.exports = app

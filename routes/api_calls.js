@@ -20,7 +20,7 @@ module.exports = function(app) {
 
         restructured_data= api.restructure_data(data)
 
-        data_grouped_by_number=api.groupByNumber(restructured_data)
+        data_grouped_by_number=api.group_by_number(restructured_data)
 
         sum = api.sum(data_grouped_by_number)
 
